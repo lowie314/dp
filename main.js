@@ -2,26 +2,27 @@
 var blocklyArea = document.getElementById('blocklyArea');
 var blocklyDiv = document.getElementById('blocklyDiv');
 var demoWorkspace;
-var toolboxExercise;
+
+
+
 
 
 function loadBlockly() {
   document.getElementById("buttonSave").disabled = false;
   document.getElementById("buttonRun").disabled = false;
-  var workspaceExercise;
-
-  
-  try{toolboxExercise= loadedData['toolbox']}
+  var tb;
+  var ws;
+  try{tb = check['exercise_1_toolbox']}
   catch(error){
-    toolboxExercise= toolbox_1;
-    //console.log(error);
-    //console.log('hier')
+    tb = toolbox_1;
+    console.log(error);
+    console.log('hier')
 }
 
-try{workspaceExercise = loadedData['workspace']}
-catch(error){workspaceExercise = workspace_1}
+try{ws = check['exercise_1_workspace']}
+catch(error){ws = workspace_1}
 
-demoWorkspace = Blockly.inject('blocklyDiv', {toolbox: toolboxExercise,trashcan:true, move:{
+demoWorkspace = Blockly.inject('blocklyDiv', {toolbox: tb ,trashcan:true, move:{
     scrollbars: {
       horizontal: true,
       vertical: true
@@ -30,9 +31,7 @@ demoWorkspace = Blockly.inject('blocklyDiv', {toolbox: toolboxExercise,trashcan:
     wheel: false}
 });
 
-
-//console.log("ingelezen");
-Blockly.serialization.workspaces.load(workspaceExercise, demoWorkspace);
+Blockly.serialization.workspaces.load(ws, demoWorkspace);
 document.getElementById("buttonLoad").disabled = true;
 
 var onResize = function(e) {
@@ -74,12 +73,11 @@ function runCode() {
 
 function saveWorkspace(){
   var json = Blockly.serialization.workspaces.save(demoWorkspace);
-  var total_exercise = {
-    toolbox: toolboxExercise,
-    workspace: json
-  }
-  var str = JSON.stringify(total_exercise);
+  var str = JSON.stringify(json);
+  console.log(str);
   return_saved_workspace(str);
+  /*var str = JSON.stringify(json)
+  return_saved_workspace(str);*/
 }
 
 function reloadWebpage(){
