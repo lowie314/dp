@@ -5,9 +5,6 @@ var demoWorkspace;
 var toolboxExercise;
 
 
-
-
-
 function loadBlockly() {
   document.getElementById("buttonSave").disabled = false;
   document.getElementById("buttonRun").disabled = false;
