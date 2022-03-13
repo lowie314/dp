@@ -37,3 +37,7 @@ button:disabled{
   background-color: #166919; /* Green */
   color: white;
 }
+
+.center {
+  text-align:center;
+}
